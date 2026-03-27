@@ -66,7 +66,7 @@ class ScreenSaver:
         self.blackbox.show_all()
         self.screen.power_devices(None, self.config.get_main_config().get("screen_off_devices", ""), on=False)
         if self.screen.wayland:
-            cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--off"]
+            cmd = ["wlr-randr", "--output", "HDMI-A-2", "--off"]
             subprocess.run(cmd)
         return False
 
@@ -88,6 +88,6 @@ class ScreenSaver:
         self.screen.gtk.set_cursor(self.screen.show_cursor, window=self.screen.get_window())
         self.screen.power_devices(None, self.config.get_main_config().get("screen_on_devices", ""), on=True)
         if self.screen.wayland:
-            cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--off"]
+            cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--on"]
             subprocess.run(cmd)        
         self.screen.lock_screen.relock()
