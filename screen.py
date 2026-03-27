@@ -637,11 +637,13 @@ class KlipperScreen(Gtk.Window):
                 self.screensaver.show()
                 if self.wayland:
                     cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--off"]
+                    subprocess.run(cmd)
         return True
 
     def wake_screen(self):
         if self.wayland:
             cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--on"]
+            subprocess.run(cmd)
             return
         # Wake the screen (it will go to standby as configured)
         if not self.use_dpms:
@@ -661,7 +663,7 @@ class KlipperScreen(Gtk.Window):
         if self.wayland:
             self.use_dpms = False
             self._config.set("main", "use_dpms", False)
-            self._config.set("main", "use_wlr-randr", True)
+            #self._config.set("main", "use_wlr-randr", True)
             self._config.save_user_config_options()
             logging.debug("DPMS handling not supported on Wayland")
             return
