@@ -75,7 +75,7 @@ class KlipperScreen(Gtk.Window):
     initializing = False
     popup_timeout = None
     wayland = False
-    wlr True
+    wlr = True
     windowed = False
     notification_log = []
     prompt = None
@@ -106,7 +106,7 @@ class KlipperScreen(Gtk.Window):
         self.connect("key-press-event", self._key_press_event)
         self.connect("configure_event", self.update_size)
         if self.wlr:
-            cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--off"]
+            cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90"]
             subprocess.run(cmd)
         display = Gdk.Display.get_default()
         self.display_number = os.environ.get('DISPLAY') or ':0'
