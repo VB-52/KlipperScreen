@@ -635,6 +635,8 @@ class KlipperScreen(Gtk.Window):
         elif state != functions.DPMS_State.On:
             if not self.screensaver.is_showing():
                 self.screensaver.show()
+                if self.wayland:
+                    cmd = ["wlr-randr", "--output", "HDMI-A-2", "--transform", "90", "--off"]
         return True
 
     def wake_screen(self):
