@@ -1,5 +1,5 @@
-reset_timeout()import logging
-
+import logging
+import subprocess
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -78,7 +78,7 @@ class ScreenSaver:
         self.blackbox = None
         for child in self.screen.overlay.get_children():
             child.show()
-        if self.screen.use_dpms or self.wayland:
+        if self.screen.use_dpms:
             self.screen.wake_screen()
         else:
             self.reset_timeout()
